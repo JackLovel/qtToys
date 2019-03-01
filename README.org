@@ -3,3 +3,8 @@
 store some Qt toys and some code copy from qt office code 
 #+END_SRC
 
+*** programme list
+
+|software|link | 
+|---+---|
+|NotePad |[[https://doc.qt.io/qt-5.9/qtwidgets-mainwindows-application-example.html][Application Exmaple]]|
