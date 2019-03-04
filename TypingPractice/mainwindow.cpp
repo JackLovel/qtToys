@@ -10,6 +10,7 @@
 #include <QStatusBar>
 #include <QTableWidget>
 #include <QLabel>
+#include "configdialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
@@ -57,8 +58,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::openSetting()
 {
-    Setting *settingDialog = new Setting(this);
+//    Setting *settingDialog = new Setting(this);
 
-    settingDialog->exec();
+//    settingDialog->exec();
+
+    ConfigDialog *configDialog = new ConfigDialog(this);
+    configDialog->show();
 }
 

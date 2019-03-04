@@ -25,12 +25,24 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    setting.cpp
+    setting.cpp \
+    settingpage.cpp \
+    configdialog.cpp
 
 HEADERS  += mainwindow.h \
-    setting.h
+    setting.h \
+    settingpage.h \
+    configdialog.h
 
 FORMS    += mainwindow.ui
 
 RESOURCES += \
     resource.qrc
+
+DISTFILES += \
+    img/save.png \
+    img/paste.png \
+    img/open.png \
+    img/new.png \
+    img/cut.png \
+    img/copy.png
