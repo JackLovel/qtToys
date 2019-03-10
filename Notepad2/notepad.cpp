@@ -92,8 +92,10 @@ Notepad::Notepad(QWidget *parent) :
     toolbar->addAction(fontAct);
     toolbar->addSeparator();
     toolbar->addAction(exitAct);
+    toolbar->addAction(boldAct);
     toolbar->addAction(underlineAct);
     toolbar->addAction(fontItalicAct);
+    toolbar->addSeparator();
     toolbar->addAction(aboutAct);
 
 
@@ -238,20 +240,45 @@ void Notepad::selectFont()
         textEdit->setFont(font);
 }
 
-void Notepad::setFontUnderline(bool underline)
+void Notepad::setFontUnderline()
 {
-    textEdit->setFontUnderline(underline);
+    if (!underLineDone)
+    {
+        underLineDone = true;
+        textEdit->setFontUnderline(true);
+    }
+    else
+    {
+        underLineDone = false;
+        textEdit->setFontUnderline(false);
+    }
 }
 
-void Notepad::setFontItalic(bool italic)
+void Notepad::setFontItalic()
 {
-    textEdit->setFontItalic(italic);
+    if (!italicDone)
+    {
+        textEdit->setFontItalic(true);
+        italicDone = true;
+    }
+    else
+    {   textEdit->setFontItalic(false);
+        italicDone = false;
+    }
 }
 
-void Notepad::setFontBold(bool bold)
+void Notepad::setFontBold()
 {
-    bold ? textEdit->setFontWeight(QFont::Bold) :
-           textEdit->setFontWeight(QFont::Normal);
+    if (!boldDone)
+    {
+        textEdit->setFontWeight(QFont::Bold);
+        boldDone = true;
+    }
+    else
+    {
+        textEdit->setFontWeight(QFont::Normal);
+        boldDone = false;
+    }
 }
 
 void Notepad::about()

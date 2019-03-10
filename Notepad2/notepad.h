@@ -10,6 +10,7 @@ class Notepad : public QMainWindow
 public:
     Notepad(QWidget *parent = 0);
 
+
 private slots:
     void newDocument();
     void open();
@@ -23,13 +24,19 @@ private slots:
     void undo();
     void redo();
     void selectFont();
-    void setFontBold(bool bold);
-    void setFontUnderline(bool underline);
-    void setFontItalic(bool italic);
+    void setFontBold();
+    void setFontUnderline();
+    void setFontItalic();
     void about();
+
+
 private:
-    QString currentFile;
-    QTextEdit *textEdit;
+    QString currentFile;           // current file name, default is empty
+    QTextEdit *textEdit;           // content area
+
+    bool boldDone = false;         // default font is not bold
+    bool italicDone = false;       // default font is not italic
+    bool underLineDone = false;    // default font is not underline
 };
 
 #endif // WIDGET_H
