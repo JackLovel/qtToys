@@ -15,11 +15,12 @@
 #include <QMenu>
 #include <QMenuBar>
 #include <QToolBar>
+#include <QWheelEvent>
 
 Notepad::Notepad(QWidget *parent) :
     QMainWindow(parent)
 {
-    textEdit = new QTextEdit;
+    textEdit = new Editor(this);
 
 
     QPixmap newPix(":/img/new.png");
@@ -105,11 +106,12 @@ Notepad::Notepad(QWidget *parent) :
     connect(saveAsAct, &QAction::triggered, this, &Notepad::saveAs);
     connect(printAct, &QAction::triggered, this, &Notepad::print);
     connect(exitAct, &QAction::triggered, this, &Notepad::exit);
-    connect(copyAct, &QAction::triggered, this, &Notepad::copy);
-    connect(cutAct, &QAction::triggered, this, &Notepad::cut);
-    connect(pasteAct, &QAction::triggered, this, &Notepad::paste);
-    connect(undoAct, &QAction::triggered, this, &Notepad::undo);
-    connect(redoAct, &QAction::triggered, this, &Notepad::redo);
+
+    connect(copyAct, &QAction::triggered, textEdit, &Editor::copy);
+    connect(cutAct, &QAction::triggered, textEdit, &Editor::cut);
+    connect(pasteAct, &QAction::triggered, textEdit, &Editor::paste);
+    connect(undoAct, &QAction::triggered, textEdit, &Editor::undo);
+    connect(redoAct, &QAction::triggered, textEdit, &Editor::redo);
     connect(fontAct, &QAction::triggered, this, &Notepad::selectFont);
     connect(boldAct, &QAction::triggered, this, &Notepad::setFontBold);
     connect(underlineAct, &QAction::triggered, this, &Notepad::setFontUnderline);
@@ -144,6 +146,7 @@ void Notepad::open()
     file.close();
 }
 
+Notepad::~Notepad() {}
 void Notepad::save()
 {
     QString fileName;
@@ -206,31 +209,31 @@ void Notepad::exit()
     QCoreApplication::quit();
 }
 
-void Notepad::copy()
-{
-    textEdit->copy();
-}
+//void Notepad::copy()
+//{
+//    textEdit->copy();
+//}
 
-void Notepad::cut()
-{
-    textEdit->cut();
-}
+//void Notepad::cut()
+//{
+//    textEdit->cut();
+//}
 
 
-void Notepad::paste()
-{
-    textEdit->paste();
-}
+//void Notepad::paste()
+//{
+//    textEdit->paste();
+//}
 
-void Notepad::undo()
-{
-    textEdit->undo();
-}
+//void Notepad::undo()
+//{
+//    textEdit->undo();
+//}
 
-void Notepad::redo()
-{
-    textEdit->redo();
-}
+//void Notepad::redo()
+//{
+//    textEdit->redo();
+//}
 
 void Notepad::selectFont()
 {
@@ -245,26 +248,26 @@ void Notepad::setFontUnderline()
     if (!underLineDone)
     {
         underLineDone = true;
-        textEdit->setFontUnderline(true);
     }
     else
     {
         underLineDone = false;
-        textEdit->setFontUnderline(false);
     }
+
+    textEdit->setFontUnderline(underLineDone);
 }
 
 void Notepad::setFontItalic()
 {
     if (!italicDone)
     {
-        textEdit->setFontItalic(true);
         italicDone = true;
     }
     else
-    {   textEdit->setFontItalic(false);
+    {
         italicDone = false;
     }
+    textEdit->setFontItalic(italicDone);
 }
 
 void Notepad::setFontBold()
@@ -287,3 +290,15 @@ void Notepad::about()
                        tr("The <b>Notepad</b> example demonstrace  how to code a basic"
                           "text editor using QtWidgets"));
 }
+
+//void Notepad::wheelEvent(QWheelEvent *event)
+//{
+//    if (event->delta() > 0)
+//    {
+//        textEdit->zoomIn();     // enlarge
+//    }
+//    else
+//    {
+//        textEdit->zoomOut();    // narrow
+//    }
+//}

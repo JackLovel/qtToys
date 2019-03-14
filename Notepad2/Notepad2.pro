@@ -24,10 +24,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp \
-    notepad.cpp
+    notepad.cpp \
+    editor.cpp
 
 HEADERS  += \
-    notepad.h
+    notepad.h \
+    editor.h
 
 FORMS    += widget.ui
 
