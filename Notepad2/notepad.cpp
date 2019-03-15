@@ -62,9 +62,6 @@ Notepad::Notepad(QWidget *parent) :
     QAction *fontItalicAct = new QAction(italicPix, "&FontItalic", this);
     QAction *aboutAct = new QAction(aboutPix, "&about", this);
 
-    // set key
-//    QString newShortcut = "Ctrl+N";
-    QString openShortcut = "Ctrl+O";
     newAct->setShortcut(QKeySequence(readJson("newFile")));
     openAct->setShortcut(QKeySequence(readJson("openFile")));
     saveAct->setShortcut(readJson("saveFile"));
@@ -294,33 +291,32 @@ void Notepad::about()
 
 QString Notepad::readJson(const QString key)
 {
-    QString val;
+
     QFile file;
 
     file.setFileName(":/settings/keys.json");
-    file.open(QIODevice::ReadOnly | QIODevice::Text);
-    val = file.readAll();
+
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        QMessageBox::warning(this, "config file not found", "key config is maybe deleted or not exist!");
+        return QString();
+    }
+
+    QString val = file.readAll();
     file.close();
-    //qDebug() << val;
 
     QJsonDocument d = QJsonDocument::fromJson(val.toUtf8());
-    //qDebug() << d;
-
-    //qDebug() << "===================" << endl;
     QJsonObject sett2 = d.object();
     QJsonValue value = sett2.value(QString(key));
-    //qDebug() << value << endl;
-
     QJsonObject item = value.toObject();
-    //qDebug() << item;
-
     QJsonValue subobj = item["default"];
-    //qDebug() << subobj.toString();
+    QString subItem = subobj.toString();
 
     // array
-//    QJsonArray test = item["imp"].toArray();
-//    qDebug() << test[1].toString();
-    return subobj.toString();
+    // QJsonArray test = item["default"].toArray();
+    // qDebug() << test[1].toString();
+
+    return subItem;
 }
 
 
