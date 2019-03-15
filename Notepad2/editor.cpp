@@ -1,6 +1,7 @@
-#include "editor.h"
 #include <QWheelEvent>
 #include <QFontDialog>
+
+#include "editor.h"
 
 Editor::Editor(QWidget *parent)
     : QTextEdit(parent)
@@ -8,7 +9,10 @@ Editor::Editor(QWidget *parent)
 
 }
 
-// Editor::~Editor() {}
+Editor::~Editor()
+{
+
+}
 
 void Editor::wheelEvent(QWheelEvent *event)
 {
@@ -25,77 +29,25 @@ void Editor::wheelEvent(QWheelEvent *event)
 
 void Editor::copy()
 {
-    this->copy();
+    QTextEdit::copy();
 }
 
 void Editor::cut()
 {
-    this->cut();
+    QTextEdit::cut();
 }
 
 void Editor::paste()
 {
-    this->paste();
+    QTextEdit::paste();
 }
 
 void Editor::undo()
 {
-    this->undo();
+    QTextEdit::undo();
 }
 
 void Editor::redo()
 {
-    this->redo();
+    QTextEdit::redo();
 }
-
-//void Editor::selectFont()
-//{
-//    bool fontSelected;
-//    QFont font = QFontDialog::getFont(&fontSelected, this);
-//    if (fontSelected)
-//        this->setFont(font);
-//}
-
-//void Editor::setFontUnderline()
-//{
-//    if (!underLineDone)
-//    {
-//        underLineDone = true;
-//        this->setFontUnderline(true);
-//    }
-//    else
-//    {
-//        underLineDone = false;
-//        this->setFontUnderline(false);
-//    }
-//}
-
-//void Editor::setFontItalic()
-//{
-//    if (!italicDone)
-//    {
-//        this->setFontItalic(true);
-//        italicDone = true;
-//    }
-//    else
-//    {   this->setFontItalic(false);
-//        italicDone = false;
-//    }
-//}
-
-//void Editor::setFontBold()
-//{
-//    if (!boldDone)
-//    {
-//        this->setFontWeight(QFont::Bold);
-//        boldDone = true;
-//    }
-//    else
-//    {
-//        this->setFontWeight(QFont::Normal);
-//        boldDone = false;
-//    }
-//}
-
-
-

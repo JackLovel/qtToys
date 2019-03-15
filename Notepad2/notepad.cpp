@@ -21,6 +21,7 @@
 #include <QJsonObject>
 
 #include <QDebug>
+
 Notepad::Notepad(QWidget *parent) :
     QMainWindow(parent)
 {
