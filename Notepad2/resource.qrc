@@ -18,5 +18,6 @@
         <file>img/copy.png</file>
         <file>img/bold.png</file>
         <file>img/about.png</file>
+        <file>settings/keys.json</file>
     </qresource>
 </RCC>

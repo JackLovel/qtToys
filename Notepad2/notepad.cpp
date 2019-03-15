@@ -17,6 +17,10 @@
 #include <QToolBar>
 #include <QWheelEvent>
 
+#include <QJsonDocument>
+#include <QJsonObject>
+
+#include <QDebug>
 Notepad::Notepad(QWidget *parent) :
     QMainWindow(parent)
 {
@@ -42,7 +46,7 @@ Notepad::Notepad(QWidget *parent) :
 
 
     QAction *newAct = new QAction(newPix, "&New", this);
-    QAction *openAct = new QAction(openPix, "&Open", this);
+    QAction *openAct = new QAction(openPix, "&Open", this);   
     QAction *saveAct = new QAction(savePix, "&Save", this);
     QAction *saveAsAct = new QAction(saveAsPix, "&SaveAs", this);
     QAction *printAct = new QAction(printPix, "&Print", this);
@@ -57,6 +61,27 @@ Notepad::Notepad(QWidget *parent) :
     QAction *underlineAct = new QAction(underlinePix, "&Underline", this);
     QAction *fontItalicAct = new QAction(italicPix, "&FontItalic", this);
     QAction *aboutAct = new QAction(aboutPix, "&about", this);
+
+    // set key
+//    QString newShortcut = "Ctrl+N";
+    QString openShortcut = "Ctrl+O";
+    newAct->setShortcut(QKeySequence(readJson("newFile")));
+    openAct->setShortcut(QKeySequence(readJson("openFile")));
+    saveAct->setShortcut(readJson("saveFile"));
+    saveAsAct->setShortcut(QKeySequence(readJson("saveAsFile")));
+    //printAct->setShortcut(QKeySequence("Ctrl+N"));
+    exitAct->setShortcut(QKeySequence(readJson("exit")));
+    copyAct->setShortcut(QKeySequence(readJson("copy")));
+    cutAct->setShortcut(QKeySequence(readJson("cut")));
+    pasteAct->setShortcut(QKeySequence(readJson("paste")));
+    undoAct->setShortcut(QKeySequence(readJson("undo")));
+    redoAct->setShortcut(QKeySequence(readJson("redo")));
+    //fontAct->setShortcut(QKeySequence("Ctrl+O"));
+    //boldAct->setShortcut(QKeySequence("Ctrl+N"));
+    //underlineAct->setShortcut(QKeySequence("Ctrl+O"));
+    //fontItalicAct->setShortcut(QKeySequence("Ctrl+N"));
+    //aboutAct->setShortcut(QKeySequence("Ctrl+O"));
+
 
 
     QMenu *fileMenu = menuBar()->addMenu(tr("&file"));
@@ -118,7 +143,6 @@ Notepad::Notepad(QWidget *parent) :
     connect(fontItalicAct, &QAction::triggered, this, &Notepad::setFontItalic);
     connect(aboutAct, &QAction::triggered, this, &Notepad::about);
 
-
     setCentralWidget(textEdit);
 }
 
@@ -146,7 +170,10 @@ void Notepad::open()
     file.close();
 }
 
+
 Notepad::~Notepad() {}
+
+
 void Notepad::save()
 {
     QString fileName;
@@ -209,32 +236,6 @@ void Notepad::exit()
     QCoreApplication::quit();
 }
 
-//void Notepad::copy()
-//{
-//    textEdit->copy();
-//}
-
-//void Notepad::cut()
-//{
-//    textEdit->cut();
-//}
-
-
-//void Notepad::paste()
-//{
-//    textEdit->paste();
-//}
-
-//void Notepad::undo()
-//{
-//    textEdit->undo();
-//}
-
-//void Notepad::redo()
-//{
-//    textEdit->redo();
-//}
-
 void Notepad::selectFont()
 {
     bool fontSelected;
@@ -291,14 +292,42 @@ void Notepad::about()
                           "text editor using QtWidgets"));
 }
 
-//void Notepad::wheelEvent(QWheelEvent *event)
-//{
-//    if (event->delta() > 0)
-//    {
-//        textEdit->zoomIn();     // enlarge
-//    }
-//    else
-//    {
-//        textEdit->zoomOut();    // narrow
-//    }
-//}
+QString Notepad::readJson(const QString key)
+{
+    QString val;
+    QFile file;
+
+    file.setFileName(":/settings/keys.json");
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    val = file.readAll();
+    file.close();
+    //qDebug() << val;
+
+    QJsonDocument d = QJsonDocument::fromJson(val.toUtf8());
+    //qDebug() << d;
+
+    //qDebug() << "===================" << endl;
+    QJsonObject sett2 = d.object();
+    QJsonValue value = sett2.value(QString(key));
+    //qDebug() << value << endl;
+
+    QJsonObject item = value.toObject();
+    //qDebug() << item;
+
+    QJsonValue subobj = item["default"];
+    //qDebug() << subobj.toString();
+
+    // array
+//    QJsonArray test = item["imp"].toArray();
+//    qDebug() << test[1].toString();
+    return subobj.toString();
+}
+
+
+
+
+
+
+
+
+

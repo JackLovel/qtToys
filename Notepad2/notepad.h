@@ -29,6 +29,8 @@ private slots:
     void setFontItalic();
     void about();
 
+    //QString readJson(const QString &fileName, const QString &key);
+    QString readJson(const QString key);
 
 private:
     void createActions();

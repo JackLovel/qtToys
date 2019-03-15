@@ -1,0 +1,35 @@
+{
+    "newFile": {
+        "name": "new file",
+        "type": "shortcut",
+        "default": "Ctrl+N"
+    },
+    "openFile": {
+         "name": "open file",
+         "default": "Ctrl+O"
+    },
+    "cut": {
+            "default": "Ctrl+X"
+    },
+    "saveFile": {
+        "default": "Ctrl+S"
+    },
+    "saveAsFile": {
+        "default": "Ctrl+Shift+S"
+    },
+    "exit": {
+        "default": "Ctrl+Q"
+    },
+    "copy": {
+        "default": "Ctrl+C"
+    },
+    "paste": {
+        "default": "Ctrl+V"
+    },
+    "undo": {
+        "default": "Ctrl+j"
+    },
+    "redo": {
+        "default": "Ctrl+Shift+j"
+    }
+}
