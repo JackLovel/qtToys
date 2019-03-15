@@ -26,6 +26,10 @@ void Editor::wheelEvent(QWheelEvent *event)
         }
 }
 
+void Editor::setText(const QString &text)
+{
+    QTextEdit::setText(text);
+}
 
 void Editor::copy()
 {
@@ -50,4 +54,48 @@ void Editor::undo()
 void Editor::redo()
 {
     QTextEdit::redo();
+}
+
+void Editor::setFontUnderline()
+{
+    if (!underLineDone)
+    {
+        underLineDone = true;
+    }
+    else
+    {
+        underLineDone = false;
+    }
+
+    QTextEdit::setFontUnderline(underLineDone);
+}
+
+void Editor::setFontItalic()
+{
+    if (!italicDone)
+    {
+        italicDone = true;
+    }
+    else
+    {
+        italicDone = false;
+    }
+
+    QTextEdit::setFontItalic(italicDone);
+}
+
+
+void Editor::setFontBold()
+{
+    if (!boldDone)
+    {
+        boldDone = true;
+    }
+    else
+    {
+        boldDone = false;
+    }
+
+    qint32 font = boldDone ? QFont::Bold : QFont::Normal;
+    QTextEdit::setFontWeight(font);
 }

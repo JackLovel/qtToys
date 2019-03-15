@@ -11,6 +11,11 @@ public:
     Editor(QWidget *parent = 0);
     ~Editor();
 
+    void setText(const QString &text);
+    void setFontUnderline();
+    void setFontItalic();
+    void setFontBold();
+
 protected:
     void wheelEvent(QWheelEvent * event);
 
@@ -20,6 +25,11 @@ public slots:
     void paste();
     void undo();
     void redo();
+
+private:
+    bool boldDone = false;
+    bool italicDone = false;
+    bool underLineDone = false;
 };
 
 #endif // EDITOR_H

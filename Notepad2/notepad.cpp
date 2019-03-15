@@ -136,9 +136,9 @@ Notepad::Notepad(QWidget *parent) :
     connect(undoAct, &QAction::triggered, textEdit, &Editor::undo);
     connect(redoAct, &QAction::triggered, textEdit, &Editor::redo);
     connect(fontAct, &QAction::triggered, this, &Notepad::selectFont);
-    connect(boldAct, &QAction::triggered, this, &Notepad::setFontBold);
-    connect(underlineAct, &QAction::triggered, this, &Notepad::setFontUnderline);
-    connect(fontItalicAct, &QAction::triggered, this, &Notepad::setFontItalic);
+    connect(boldAct, &QAction::triggered, textEdit, &Editor::setFontBold);
+    connect(underlineAct, &QAction::triggered, textEdit, &Editor::setFontUnderline);
+    connect(fontItalicAct, &QAction::triggered, textEdit, &Editor::setFontItalic);
     connect(aboutAct, &QAction::triggered, this, &Notepad::about);
 
     setCentralWidget(textEdit);
@@ -155,11 +155,11 @@ void Notepad::open()
     QString fileName = QFileDialog::getOpenFileName(this, "Open  the file");
     QFile file(fileName);
     currentFile = fileName;
-    if (!file.open(QIODevice::ReadOnly | QFile::Text))
-    {
-        QMessageBox::warning(this, "Warning", "Cannot open file: " + file.errorString());
-        return;
-    }
+//    if (!file.open(QIODevice::ReadOnly | QFile::Text))
+//    {
+//        QMessageBox::warning(this, "Warning", "Cannot open file: " + file.errorString());
+//        return;
+//    }
 
     setWindowTitle(fileName);
     QTextStream in(&fileName);
@@ -186,11 +186,11 @@ void Notepad::save()
     }
 
     QFile file(fileName);
-    if (!file.open(QIODevice::WriteOnly | QFile::Text))
-    {
-        QMessageBox::warning(this, "Warning", "Can not save file:" + file.errorString());
-        return;
-    }
+//    if (!file.open(QIODevice::WriteOnly | QFile::Text))
+//    {
+//        QMessageBox::warning(this, "Warning", "Can not save file:" + file.errorString());
+//        return;
+//    }
 
     setWindowTitle(fileName);
     QTextStream out(&file);
@@ -240,47 +240,6 @@ void Notepad::selectFont()
     QFont font = QFontDialog::getFont(&fontSelected, this);
     if (fontSelected)
         textEdit->setFont(font);
-}
-
-void Notepad::setFontUnderline()
-{
-    if (!underLineDone)
-    {
-        underLineDone = true;
-    }
-    else
-    {
-        underLineDone = false;
-    }
-
-    textEdit->setFontUnderline(underLineDone);
-}
-
-void Notepad::setFontItalic()
-{
-    if (!italicDone)
-    {
-        italicDone = true;
-    }
-    else
-    {
-        italicDone = false;
-    }
-    textEdit->setFontItalic(italicDone);
-}
-
-void Notepad::setFontBold()
-{
-    if (!boldDone)
-    {
-        textEdit->setFontWeight(QFont::Bold);
-        boldDone = true;
-    }
-    else
-    {
-        textEdit->setFontWeight(QFont::Normal);
-        boldDone = false;
-    }
 }
 
 void Notepad::about()
