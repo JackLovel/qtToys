@@ -11,10 +11,14 @@ public:
     Editor(QWidget *parent = 0);
     ~Editor();
 
-    void setText(const QString &text);
+    void setText(const QString text);
     void setFontUnderline();
     void setFontItalic();
     void setFontBold();
+
+    void open(const QString fileName);
+    void save(const QString fileName);
+    void saveAs(const QString fileName);
 
 protected:
     void wheelEvent(QWheelEvent * event);

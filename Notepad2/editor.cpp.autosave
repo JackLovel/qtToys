@@ -3,6 +3,7 @@
 #include <QTextStream>
 #include <QFile>
 #include <QDebug>
+
 #include "editor.h"
 
 Editor::Editor(QWidget *parent)

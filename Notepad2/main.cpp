@@ -1,5 +1,10 @@
 #include "notepad.h"
 #include <QApplication>
+#include <QSplashScreen>
+#include <QPixmap>
+#include <QThread>
+#include <QDateTime>
+
 
 int main(int argc, char *argv[])
 {

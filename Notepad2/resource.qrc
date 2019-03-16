@@ -19,5 +19,7 @@
         <file>img/bold.png</file>
         <file>img/about.png</file>
         <file>settings/keys.json</file>
+        <file>img/boot_screen.png</file>
+        <file>img/screen.png</file>
     </qresource>
 </RCC>

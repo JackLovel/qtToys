@@ -152,20 +152,10 @@ void Notepad::newDocument()
 
 void Notepad::open()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, "Open  the file");
-    QFile file(fileName);
+    QString fileName = QFileDialog::getOpenFileName(this,
+                                                    "open file");
     currentFile = fileName;
-//    if (!file.open(QIODevice::ReadOnly | QFile::Text))
-//    {
-//        QMessageBox::warning(this, "Warning", "Cannot open file: " + file.errorString());
-//        return;
-//    }
-
-    setWindowTitle(fileName);
-    QTextStream in(&fileName);
-    QString text = in.readAll();
-    textEdit->setText(text);
-    file.close();
+    textEdit->open(fileName);
 }
 
 
@@ -185,37 +175,19 @@ void Notepad::save()
         fileName = currentFile;
     }
 
-    QFile file(fileName);
-//    if (!file.open(QIODevice::WriteOnly | QFile::Text))
-//    {
-//        QMessageBox::warning(this, "Warning", "Can not save file:" + file.errorString());
-//        return;
-//    }
 
+    textEdit->save(fileName);
     setWindowTitle(fileName);
-    QTextStream out(&file);
-    QString text = textEdit->toPlainText();
-    out << text;
-    file.close();
 }
 
 void Notepad::saveAs()
 {
-    QString fileName = QFileDialog::getSaveFileName(this, "Save as");
-    QFile file(fileName);
+    QString fileName = QFileDialog
+            ::getSaveFileName(this, "Save as");
 
-    if (!file.open(QFile::WriteOnly | QFile::Text))
-    {
-        QMessageBox::warning(this, "Warning", "Cannot save file" + file.errorString());
-        return;
-    }
-
-    currentFile = fileName;
     setWindowTitle(fileName);
-    QTextStream out(&file);
-    QString text = textEdit->toPlainText();
-    out << text;
-    file.close();
+
+    textEdit->saveAs(fileName);
 }
 
 void Notepad::print()

@@ -8,6 +8,8 @@ QT       += core gui
 QT += printsupport # add print
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+Qt += QtTest
+
 TARGET = Notepad2
 TEMPLATE = app
 
