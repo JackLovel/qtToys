@@ -1,4 +1,5 @@
 #include "notepad.h"
+#include "setting.h"
 
 #include <QFile>
 #include <QFileDialog>
@@ -21,6 +22,7 @@
 #include <QJsonObject>
 
 #include <QDebug>
+#include "utils.h"
 
 Notepad::Notepad(QWidget *parent) :
     QMainWindow(parent)
@@ -63,17 +65,22 @@ Notepad::Notepad(QWidget *parent) :
     QAction *fontItalicAct = new QAction(italicPix, "&FontItalic", this);
     QAction *aboutAct = new QAction(aboutPix, "&about", this);
 
-    newAct->setShortcut(QKeySequence(readJson("newFile")));
-    openAct->setShortcut(QKeySequence(readJson("openFile")));
-    saveAct->setShortcut(readJson("saveFile"));
-    saveAsAct->setShortcut(QKeySequence(readJson("saveAsFile")));
-    //printAct->setShortcut(QKeySequence("Ctrl+N"));
-    exitAct->setShortcut(QKeySequence(readJson("exit")));
-    copyAct->setShortcut(QKeySequence(readJson("copy")));
-    cutAct->setShortcut(QKeySequence(readJson("cut")));
-    pasteAct->setShortcut(QKeySequence(readJson("paste")));
-    undoAct->setShortcut(QKeySequence(readJson("undo")));
-    redoAct->setShortcut(QKeySequence(readJson("redo")));
+    QAction *settingAct = new QAction("setting", this);
+
+    newAct->setShortcut(Utils::readJson(this, "menu", "newFile"));
+    openAct->setShortcut(Utils::readJson(this, "menu", "openFile"));
+    saveAct->setShortcut(Utils::readJson(this, "menu", "saveFile"));
+    saveAsAct->setShortcut(Utils::readJson(this, "menu", "saveAsFile"));
+    exitAct->setShortcut(Utils::readJson(this, "menu", "exit"));
+    copyAct->setShortcut(Utils::readJson(this, "menu", "copy"));
+    cutAct->setShortcut(Utils::readJson(this, "menu", "cut"));
+    pasteAct->setShortcut(Utils::readJson(this, "menu", "paste"));
+    undoAct->setShortcut(Utils::readJson(this, "menu", "undo"));
+    redoAct->setShortcut(Utils::readJson(this, "menu", "redo"));
+    fontAct->setShortcut(Utils::readJson(this, "menu", "font"));
+    redoAct->setShortcut(Utils::readJson(this, "menu", "redo"));
+
+    //printAct->setShortcut(Utils::readJson(this, "menu", "print"));
     //fontAct->setShortcut(QKeySequence("Ctrl+O"));
     //boldAct->setShortcut(QKeySequence("Ctrl+N"));
     //underlineAct->setShortcut(QKeySequence("Ctrl+O"));
@@ -90,7 +97,7 @@ Notepad::Notepad(QWidget *parent) :
     fileMenu->addAction(printAct);
     fileMenu->addSeparator();
     fileMenu->addAction(exitAct);
-
+    fileMenu->addAction(settingAct);
 
     QMenu *editMenu = menuBar()->addMenu(tr("&edit"));
     editMenu->addAction(copyAct);
@@ -140,6 +147,10 @@ Notepad::Notepad(QWidget *parent) :
     connect(underlineAct, &QAction::triggered, textEdit, &Editor::setFontUnderline);
     connect(fontItalicAct, &QAction::triggered, textEdit, &Editor::setFontItalic);
     connect(aboutAct, &QAction::triggered, this, &Notepad::about);
+    connect(settingAct, &QAction::triggered, this, &Notepad::settingDialog);
+
+    QPixmap windowIcon(":/img/window.png");
+    setWindowIcon(windowIcon);
 
     setCentralWidget(textEdit);
 }
@@ -221,37 +232,41 @@ void Notepad::about()
                           "text editor using QtWidgets"));
 }
 
-QString Notepad::readJson(const QString key)
+//QString Notepad::readJson(const QString key)
+//{
+
+//    QFile file;
+
+//    file.setFileName(":/settings/keys.json");
+
+//    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+//    {
+//        QMessageBox::warning(this, "config file not found", "key config is maybe deleted or not exist!");
+//        return QString();
+//    }
+
+//    QString val = file.readAll();
+//    file.close();
+
+//    QJsonDocument d = QJsonDocument::fromJson(val.toUtf8());
+//    QJsonObject sett2 = d.object();
+//    QJsonValue value = sett2.value(QString(key));
+//    QJsonObject item = value.toObject();
+//    QJsonValue subobj = item["default"];
+//    QString subItem = subobj.toString();
+
+//    // array
+//    // QJsonArray test = item["default"].toArray();
+//    // qDebug() << test[1].toString();
+
+//    return subItem;
+//}
+
+void Notepad::settingDialog()
 {
-
-    QFile file;
-
-    file.setFileName(":/settings/keys.json");
-
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-    {
-        QMessageBox::warning(this, "config file not found", "key config is maybe deleted or not exist!");
-        return QString();
-    }
-
-    QString val = file.readAll();
-    file.close();
-
-    QJsonDocument d = QJsonDocument::fromJson(val.toUtf8());
-    QJsonObject sett2 = d.object();
-    QJsonValue value = sett2.value(QString(key));
-    QJsonObject item = value.toObject();
-    QJsonValue subobj = item["default"];
-    QString subItem = subobj.toString();
-
-    // array
-    // QJsonArray test = item["default"].toArray();
-    // qDebug() << test[1].toString();
-
-    return subItem;
+    Setting dialog;
+    dialog.exec();
 }
-
-
 
 
 

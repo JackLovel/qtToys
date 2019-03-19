@@ -27,13 +27,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp \
     notepad.cpp \
-    editor.cpp
+    editor.cpp \
+    systemtray.cpp \
+    setting.cpp \
+    settingpage.cpp \
+    utils.cpp
 
 HEADERS  += \
     notepad.h \
-    editor.h
+    editor.h \
+    systemtray.h \
+    setting.h \
+    settingpage.h \
+    utils.h
 
 FORMS    += widget.ui
 
 RESOURCES += \
     resource.qrc
+
+RC_FILE = logo.rc

@@ -21,5 +21,10 @@
         <file>settings/keys.json</file>
         <file>img/boot_screen.png</file>
         <file>img/screen.png</file>
+        <file>img/window.png</file>
+        <file>style/buttonStyle.qss</file>
+        <file>style/checkBoxStyle.qss</file>
+        <file>img/switch_on.png</file>
+        <file>img/switch_off.png</file>
     </qresource>
 </RCC>

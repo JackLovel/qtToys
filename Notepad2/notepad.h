@@ -30,7 +30,7 @@ private slots:
     void about();
 
     //QString readJson(const QString &fileName, const QString &key);
-    QString readJson(const QString key);
+    //QString readJson(const QString key);
 
 private:
     void createActions();
@@ -43,6 +43,8 @@ private:
     bool boldDone = false;         // default font is not bold
     bool italicDone = false;       // default font is not italic
     bool underLineDone = false;    // default font is not underline
+
+    void settingDialog();
 };
 
 #endif // WIDGET_H

@@ -3,6 +3,7 @@
 #include <QTextStream>
 #include <QFile>
 #include <QDebug>
+
 #include "editor.h"
 
 Editor::Editor(QWidget *parent)
@@ -27,11 +28,6 @@ void Editor::wheelEvent(QWheelEvent *event)
             this->zoomOut();    // narrow
         }
 }
-
-//void Editor::setText(const QString &text)
-//{
-//    QTextEdit::setText(text);
-//}
 
 void Editor::copy()
 {
@@ -85,7 +81,6 @@ void Editor::setFontItalic()
 
     QTextEdit::setFontItalic(italicDone);
 }
-
 
 void Editor::setFontBold()
 {
