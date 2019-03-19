@@ -232,36 +232,6 @@ void Notepad::about()
                           "text editor using QtWidgets"));
 }
 
-//QString Notepad::readJson(const QString key)
-//{
-
-//    QFile file;
-
-//    file.setFileName(":/settings/keys.json");
-
-//    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-//    {
-//        QMessageBox::warning(this, "config file not found", "key config is maybe deleted or not exist!");
-//        return QString();
-//    }
-
-//    QString val = file.readAll();
-//    file.close();
-
-//    QJsonDocument d = QJsonDocument::fromJson(val.toUtf8());
-//    QJsonObject sett2 = d.object();
-//    QJsonValue value = sett2.value(QString(key));
-//    QJsonObject item = value.toObject();
-//    QJsonValue subobj = item["default"];
-//    QString subItem = subobj.toString();
-
-//    // array
-//    // QJsonArray test = item["default"].toArray();
-//    // qDebug() << test[1].toString();
-
-//    return subItem;
-//}
-
 void Notepad::settingDialog()
 {
     Setting dialog;
