@@ -9,4 +9,4 @@ store some Qt toys and some code copy from qt office code
 |---+---|
 |NotePad |[[https://doc.qt.io/qt-5.9/qtwidgets-mainwindows-application-example.html][Application Exmaple]]|
 |NotePad2 |[[https://doc.qt.io/qt-5/qtwidgets-tutorials-notepad-example.html][Application Exmaple]]|
-
+|HttpWindowExample |[[https://doc.qt.io/qt-5/qtnetwork-http-example.html][HTTP Example|]]
