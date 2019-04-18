@@ -5,8 +5,16 @@ store some Qt toys and some code copy from qt office code
 
 *** programme list
 
+<<<<<<< HEAD
 | software          | link                |   |
 |-------------------+---------------------+---|
 | NotePad           | [[https://doc.qt.io/qt-5.9/qtwidgets-mainwindows-application-example.html][Application Exmaple]] |   |
 | NotePad2          | [[https://doc.qt.io/qt-5/qtwidgets-tutorials-notepad-example.html][Application Exmaple]] |   |
 | HttpWindowExample | [[https://doc.qt.io/qt-5/qtnetwork-http-example.html][HttpWindowExample]] |
+=======
+|software|link | 
+|---+---|
+|NotePad |[[https://doc.qt.io/qt-5.9/qtwidgets-mainwindows-application-example.html][Application Exmaple]]|
+|NotePad2 |[[https://doc.qt.io/qt-5/qtwidgets-tutorials-notepad-example.html][Application Exmaple]]|
+|HttpWindowExample |[[https://doc.qt.io/qt-5/qtnetwork-http-example.html][HTTP Example]]|
+>>>>>>> 69872b58ac9f69474f11d3505a8f009e97eb4f7f
