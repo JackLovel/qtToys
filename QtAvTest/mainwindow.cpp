@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+
 #include <QPushButton>
 #include <QSlider>
 #include <QLayout>
@@ -66,6 +67,7 @@ void MainWindow::openMeida()
     QString file = QFileDialog::getOpenFileName(0, tr("Open a video"));
     if (file.isEmpty())
         return;
+	
     m_player->play(file);
 }
 
