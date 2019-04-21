@@ -67,7 +67,7 @@ void MainWindow::openMeida()
     QString file = QFileDialog::getOpenFileName(0, tr("Open a video"));
     if (file.isEmpty())
         return;
-	
+
     m_player->play(file);
 }
 
@@ -109,4 +109,17 @@ void MainWindow::updateSliderUnit()
 {
     m_unit = m_player->notifyInterval();
     updateSlider();
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *e)
+{
+    int key = e->key();
+
+    if (key == Qt::Key_P) {
+       m_player->togglePause();
+    } else if (key == Qt::Key_Q) {
+        m_player->seekBackward();
+    } else if (key == Qt::Key_E) {
+        m_player->seekForward();
+    }
 }

@@ -19,6 +19,9 @@ public:
     MainWindow();
     ~MainWindow();
 
+protected:
+    void keyPressEvent(QKeyEvent *e) override;
+
 public slots:
     void openMeida();
     void seekByslider(int value);
