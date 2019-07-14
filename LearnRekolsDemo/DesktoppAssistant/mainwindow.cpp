@@ -76,17 +76,20 @@ void MainWindow::paintEvent(QPaintEvent */*e*/)
     painter.drawRect(rect());
 }
 
+// 鼠标移动事件
 void MainWindow::mouseMoveEvent(QMouseEvent *e)
 {
-    if (e->button() & Qt::LeftButton) {
-        move(e->globalPos() - p);
+    if (e->buttons() & Qt::LeftButton) {
+        move(e->globalPos() - p); // 鼠标位置减去按下点的坐标
     }
 }
 
+// 鼠标按下事件
+// globalPos 全局位置，相对于屏幕位置
 void MainWindow::mousePressEvent(QMouseEvent *e)
 {
-    if (e->button() == Qt::LeftButton) {
-        p = e->globalPos() - frameGeometry().topLeft();
+    if (e->buttons() == Qt::LeftButton) {
+        p = e->globalPos() - frameGeometry().topLeft();  // 鼠标位置减去左上角的左边
     }
 }
 
