@@ -65,8 +65,10 @@ void MainWindow::initUI()
     });
 }
 
-void MainWindow::paintEvent(QPaintEvent */*e*/)
+void MainWindow::paintEvent(QPaintEvent *e)
 {
+    Q_UNUSED(e);
+
     QPainter painter(this);
 
     painter.setRenderHint(QPainter::Antialiasing, true);
@@ -88,7 +90,7 @@ void MainWindow::mouseMoveEvent(QMouseEvent *e)
 // globalPos 全局位置，相对于屏幕位置
 void MainWindow::mousePressEvent(QMouseEvent *e)
 {
-    if (e->buttons() == Qt::LeftButton) {
+    if (e->button() == Qt::LeftButton) {
         p = e->globalPos() - frameGeometry().topLeft();  // 鼠标位置减去左上角的左边
     }
 }

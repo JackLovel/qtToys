@@ -1,0 +1,4 @@
+#ifndef IMAINVIEWER_H
+#define IMAINVIEWER_H
+
+#endif // IMAINVIEWER_H

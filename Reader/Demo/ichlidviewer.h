@@ -1,0 +1,4 @@
+#ifndef ICHLIDVIEWER_H
+#define ICHLIDVIEWER_H
+
+#endif // ICHLIDVIEWER_H
