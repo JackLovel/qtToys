@@ -1,17 +1,29 @@
 #ifndef THUMBNAILWIDGET_H
 #define THUMBNAILWIDGET_H
 
-#include <QWidget>
+#include "ReadDefine.h"
+#include "IChildViewer.h"
+#include <QStandardItem>
 
 class ThumbnailWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ThumbnailWidget(QWidget *parent = nullptr);
+    ThumbnailWidget(QWidget *parent = nullptr);
+    ~ThumbnailWidget();
 
-signals:
+private:
+    IChildViewer *m_IChildViewer;
+    QVBoxLayout * m_vBoxlayout;
 
-public slots:
+    int m_nTimerIdle;
+    QListView *m_listView;
+    QStandardItemModel *m_ItemModel;
+    int m_nCurThumDrawPageNum;
+    int m_nPageCount;
+
+private:
+    void timerEvent(QTimerEvent *);
 };
 
 #endif // THUMBNAILWIDGET_H

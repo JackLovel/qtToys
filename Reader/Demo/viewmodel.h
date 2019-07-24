@@ -28,8 +28,8 @@ private:
 
 public:
   int GetPageCount() { return m_kit->GetPageCount(); }
-  QSize GetActruallyPageSize(int nPageNum) { return m_kit->GetActruallyPageSize(nPageNum); } 
-  QImage GetActruallyPageImage(int nPageNum) { return m_kit->GetActruallyPageSize(nPageNum); } 
+  QSize GetActruallyPageSize(int nPageNum) { return m_kit->GetActruallyPageSize(nPageNum); }
+  QImage GetActruallyPageImage(int nPageNum) { return m_kit->GetActruallyPageSize(nPageNum); }
   QSize GetPageSize(int nPageNum) { return m_kit->GetPageSize(nPageNum) }
   QImage GetPageImage(int nPageNum) { return m_kit->GetPageImage(nPageNum); }
 
@@ -41,7 +41,7 @@ public:
   int GetActruallyMaxPageWidth();
   int GetMaxPageWidth();
   int GetCurPageNum() { return m_ViewState->GetCurPageNum(); }
-  void GotoPage(int nPageNum) { return m_ViewState->GotoPage(nPageNum);} 
+  void GotoPage(int nPageNum) { return m_ViewState->GotoPage(nPageNum);}
 
 public:
   ChlidViewer *GetChildViewer() { return m_ChildViewer; }
